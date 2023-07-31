@@ -10,6 +10,14 @@ import MongoStore from 'connect-mongo';
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
+import cors from 'cors';
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // Allow only this origin
+    optionsSuccessStatus: 200, // For legacy browser support
+  })
+);
 
 app.use(
   session({
