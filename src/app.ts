@@ -11,11 +11,11 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 import cors from 'cors';
+import { requiresAuth } from './middleware/auth';
 
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Allow only this origin
-    optionsSuccessStatus: 200, // For legacy browser support
+    origin: 'http://localhost:3000/', // Allow only this origin
   })
 );
 
@@ -35,7 +35,7 @@ app.use(
 );
 
 app.use('/api/users', userRoutes);
-app.use('/api/notes', notesRoutes);
+app.use('/api/notes', requiresAuth, notesRoutes);
 
 app.use((req, res, next) => {
   next(createHttpError(404, 'Endpoint not found'));
