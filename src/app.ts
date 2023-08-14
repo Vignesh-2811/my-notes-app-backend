@@ -15,7 +15,8 @@ import { requiresAuth } from './middleware/auth';
 
 app.use(
   cors({
-    origin: 'http://localhost:3000/', // Allow only this origin
+    // origin: 'http://localhost:3000/', // Allow only this origin
+    origin: 'https://notenest.netlify.app/',
   })
 );
 
